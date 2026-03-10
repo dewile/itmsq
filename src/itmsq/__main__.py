@@ -12,15 +12,15 @@ from itmsq.taric import TaricBrokerError, pretty_xml, receive_response, send_req
 #   Node 2 (direct):           Ncts5-nddb2-te\NCTS5_NDDB2_TE  10.0.131.42
 CONNECTION_STRING = (
     "DRIVER={ODBC Driver 17 for SQL Server};"
-    "SERVER=127.0.01;"
+    "SERVER=127.0.0.1;"
     "DATABASE=SBMQ;"
-    "UID=your_user;"
-    "PWD=your_password;"
+    "UID=ais;"
+    "PWD=ais;"
 )
 
 # ── Caller (initiator) — must exist in SBMQ; see taric.py header for setup SQL
-INITIATOR_SERVICE = "TestCallerService"
-INITIATOR_QUEUE = "[dbo].[TestCallerQueue]"
+INITIATOR_SERVICE = "AISIntTest"
+INITIATOR_QUEUE = "[aisinttest].[AISIntQueue]"
 
 # ── TC01 TaricRequest (GoodsCode 010229210080, Import, Country CA) ────────────
 TC01_REQUEST = """

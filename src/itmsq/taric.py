@@ -3,9 +3,9 @@ Taric RS Service Broker client.
 
 Initiator setup SQL (run once in SBMQ if a test caller service doesn't exist):
 --------------------------------------------------------------
-CREATE QUEUE [dbo].[TestCallerQueue];
-CREATE SERVICE [TestCallerService]
-    ON QUEUE [dbo].[TestCallerQueue];
+CREATE QUEUE [dbo].[TestAISCallerQueue];
+CREATE SERVICE [TestAISCaller]
+    ON QUEUE [dbo].[TestAISCallerQueue];
 --------------------------------------------------------------
 """
 

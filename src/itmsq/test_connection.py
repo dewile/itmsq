@@ -8,8 +8,8 @@ CONNECTION_STRING = (
     "DRIVER={ODBC Driver 17 for SQL Server};"
     "SERVER=127.0.0.1;"
     "DATABASE=SBMQ;"
-    "UID=your_user;"
-    "PWD=your_password;"
+    "UID=ais;"
+    "PWD=ais;"
 )
 
 
