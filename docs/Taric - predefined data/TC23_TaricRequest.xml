@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-16"?>
+<TaricRequest>
+  <Version>1.0</Version>
+  <GUID>aafadfa1-7f29-4a6b-81a2-a1970acbc2c4</GUID>
+  <Header>
+    <SADType>E</SADType>
+    <Language>EN</Language>
+  </Header>
+  <Goods>
+    <GoodsItemNumber>1</GoodsItemNumber>
+    <GoodsShipment>1</GoodsShipment>
+    <CalcDate>2026-05-01</CalcDate>
+    <GoodsCode>040210110001</GoodsCode>
+    <Country>CZ</Country>
+    <CustomsProcedure>1000</CustomsProcedure>
+    <NetMass>5000<NetMass>
+    <Quota>
+        <QuotaOrderNumber>444001</QuotaOrderNumber>
+    <Quota>
+    <Payment>
+      <BasePrice>
+        <BasePriceType>C</BasePriceType>
+        <PriceAmount>232000</PriceAmount>
+        <Currency>RSD</Currency>
+      </BasePrice>
+    </Payment>
+  </Goods>
+</TaricRequest>

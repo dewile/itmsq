@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-16"?>
+<TaricResponse>
+  <Version>1.0</Version>
+  <Guid>aafadfa1-7f29-4a6b-81a2-a1970acbc2c4</Guid>
+  <Goods>
+    <GoodsItemNumber>1</GoodsItemNumber>
+    <GoodsShipment>1</GoodsShipment>
+    <CalcDate>2026-05-01</CalcDate>
+    <Errors>
+        <Error>
+            <ErrorNumber>430</ErrorNumber>
+            <ErrorMessage>No applicable measure series C was found</ErrorMessage>
+        </Error>
+    </Errors>
+  </Goods>
+</TaricResponse>
+<!--040210110001-->>

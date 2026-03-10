@@ -1,74 +1,71 @@
 """
-SQL Server Service Broker - Python Demo
+ITMS Service Broker test runner.
 Run with: python -m itmsq
-
-Setup SQL (run once in SSMS or similar):
---------------------------------------------------------------
--- Enable Service Broker on your DB (if not already enabled)
-ALTER DATABASE YourDatabase SET ENABLE_BROKER WITH ROLLBACK IMMEDIATE;
-
--- Message type
-CREATE MESSAGE TYPE [//Demo/RequestMessage]  VALIDATION = NONE;
-CREATE MESSAGE TYPE [//Demo/ReplyMessage]    VALIDATION = NONE;
-
--- Contract
-CREATE CONTRACT [//Demo/Contract]
-    ([//Demo/RequestMessage] SENT BY INITIATOR,
-     [//Demo/ReplyMessage]   SENT BY TARGET);
-
--- Queues
-CREATE QUEUE InitiatorQueue;
-CREATE QUEUE TargetQueue;
-
--- Services
-CREATE SERVICE [//Demo/InitiatorService]
-    ON QUEUE InitiatorQueue ([//Demo/Contract]);
-CREATE SERVICE [//Demo/TargetService]
-    ON QUEUE TargetQueue ([//Demo/Contract]);
---------------------------------------------------------------
 """
 
-import time
+from itmsq.taric import TaricBrokerError, pretty_xml, receive_response, send_request
 
-from itmsq.broker import process_target_queue, receive_reply, send_message
-
+# ── Connection ────────────────────────────────────────────────────────────────
+# Any of the three servers can be used:
+#   HA listener (recommended): Ncts5-nddb-te.carina.rs        10.0.131.43
+#   Node 1 (direct):           Ncts5-nddb1-te\NCTS5_NDDB1_TE  10.0.131.41
+#   Node 2 (direct):           Ncts5-nddb2-te\NCTS5_NDDB2_TE  10.0.131.42
 CONNECTION_STRING = (
     "DRIVER={ODBC Driver 17 for SQL Server};"
-    "SERVER=localhost;"
-    "DATABASE=YourDatabase;"
+    "SERVER=127.0.01;"
+    "DATABASE=SBMQ;"
     "UID=your_user;"
     "PWD=your_password;"
-    # For Windows auth, replace UID/PWD with: "Trusted_Connection=yes;"
 )
 
-INITIATOR_SERVICE = "//Demo/InitiatorService"
-TARGET_SERVICE = "//Demo/TargetService"
-CONTRACT = "//Demo/Contract"
-REQUEST_MSG_TYPE = "//Demo/RequestMessage"
-REPLY_MSG_TYPE = "//Demo/ReplyMessage"
+# ── Caller (initiator) — must exist in SBMQ; see taric.py header for setup SQL
+INITIATOR_SERVICE = "TestCallerService"
+INITIATOR_QUEUE = "[dbo].[TestCallerQueue]"
+
+# ── TC01 TaricRequest (GoodsCode 010229210080, Import, Country CA) ────────────
+TC01_REQUEST = """
+<TaricRequest>
+  <Version>1.0</Version>
+  <GUID>__auto__</GUID>
+  <Header>
+    <SADType>I</SADType>
+    <Language>EN</Language>
+  </Header>
+  <Goods>
+    <GoodsItemNumber>1</GoodsItemNumber>
+    <GoodsShipment>1</GoodsShipment>
+    <CalcDate>2026-05-01</CalcDate>
+    <GoodsCode>010229210080</GoodsCode>
+    <Country>CA</Country>
+    <Preference>100</Preference>
+    <CustomsProcedure>4000</CustomsProcedure>
+    <Payment>
+      <BasePrice>
+        <BasePriceType>C</BasePriceType>
+        <PriceAmount>100000</PriceAmount>
+        <Currency>RSD</Currency>
+      </BasePrice>
+    </Payment>
+  </Goods>
+</TaricRequest>
+"""
 
 
 def main() -> None:
-    handle = send_message(
-        CONNECTION_STRING,
-        "Hello from Python!",
-        initiator_service=INITIATOR_SERVICE,
-        target_service=TARGET_SERVICE,
-        contract=CONTRACT,
-        request_msg_type=REQUEST_MSG_TYPE,
-    )
+    handle = send_request(CONNECTION_STRING, INITIATOR_SERVICE, TC01_REQUEST)
 
-    time.sleep(0.5)
+    try:
+        msg_type, msg_body = receive_response(CONNECTION_STRING, INITIATOR_QUEUE, handle)
+    except TaricBrokerError as e:
+        print(f"[ERROR]  {e}")
+        return
 
-    process_target_queue(
-        CONNECTION_STRING,
-        request_msg_type=REQUEST_MSG_TYPE,
-        reply_msg_type=REPLY_MSG_TYPE,
-    )
-
-    time.sleep(0.5)
-
-    receive_reply(CONNECTION_STRING, handle)
+    if msg_body:
+        print(f"\n[RECV]   Message type: {msg_type}")
+        print("[RECV]   Response body:")
+        print(pretty_xml(msg_body))
+    else:
+        print("[RECV]   No response received within timeout.")
 
 
 if __name__ == "__main__":

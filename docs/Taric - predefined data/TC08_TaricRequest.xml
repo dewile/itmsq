@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-16"?>
+<TaricRequest>
+  <Version>1.0</Version>
+  <GUID> </GUID>
+  <Header>
+    <SADType>I</SADType>
+    <Language>EN</Language>
+  </Header>
+  <Goods>
+    <GoodsItemNumber>1</GoodsItemNumber>
+    <GoodsShipment>1</GoodsShipment>
+    <CalcDate>2025-06-01</CalcDate>
+    <GoodsCode>070690900080</GoodsCode>
+    <Country>CN</Country>
+    <Preference>300</Preference>
+    <CustomsProcedure>4000</CustomsProcedure>
+    <Payment>
+      <BasePrice>
+        <BasePriceType>C</BasePriceType>
+        <PriceAmount>170000</PriceAmount>
+        <Currency>RSD</Currency>
+      </BasePrice>
+    </Payment>
+  </Goods>
+</TaricRequest>

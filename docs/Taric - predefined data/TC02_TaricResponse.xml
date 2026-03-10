@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-16"?>
+<TaricResponse>
+  <Version>1.0</Version>
+  <Guid> </Guid>
+  <Taxes>
+    <Tax>
+      <PayType>V</PayType>
+      <TaxAmount>8800</TaxAmount>
+      <TaxType>A00</TaxType>
+    </Tax>
+	<Tax>
+      <PayType>V</PayType>
+      <TaxAmount>11880</TaxAmount>
+      <TaxType>B00</TaxType>
+    </Tax>
+  </Taxes>
+  <Goods>
+    <GoodsItemNumber>1</GoodsItemNumber>
+    <GoodsShipment>1</GoodsShipment>
+    <CalcDate>@sysdate</CalcDate>
+    <Measures>
+      <Measure>
+        <MeasureSID>2</MeasureSID>
+        <MSeries>C</MSeries>
+        <MType>ASC</MType>
+        <RegID>R1234567</RegID>
+        <GeoArea>1011</GeoArea>
+        <Tax>
+          <TaxType>A00</TaxType>
+          <PayType>V</PayType>
+          <TaxBase>110000</TaxBase>
+          <TaxRate>8</TaxRate>
+          <TaxAmount>8800</TaxAmount>
+        </Tax>
+      </Measure>
+	  <Measure>
+        <MeasureSID>9999</MeasureSID>
+        <MSeries>P</MSeries>
+        <MType>VA1</MType>
+        <RegID>R1234567</RegID>
+        <GeoArea>1011</GeoArea>
+        <Tax>
+          <TaxType>B00</TaxType>
+          <PayType>V</PayType>
+          <TaxBase>118800</TaxBase>
+          <TaxRate>10</TaxRate>
+          <TaxAmount>11880</TaxAmount>
+        </Tax>
+      </Measure>
+    </Measures>
+  </Goods>
+</TaricResponse>

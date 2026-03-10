@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-16"?>
+<TaricResponse>
+  <Version>1.0</Version>
+  <Guid>aafadfa1-7f29-4a6b-81a2-a1970acbc2c4</Guid>
+  <Goods>
+    <GoodsItemNumber>1</GoodsItemNumber>
+    <GoodsShipment>1</GoodsShipment>
+    <CalcDate>2026-05-01</CalcDate>
+    <Measures>
+      <Measure>
+        <MeasureSID>2</MeasureSID>
+        <MSeries>B</MSeries>
+        <MType>KEX</MType>
+        <RegID>R1234569</RegID>
+        <Info>
+            <InfoType>Q<InfoType>
+            <InfoTypeText>Export Quota<InfoTypeText>
+        <Info>
+        <GeoArea>CZ</GeoArea>
+        <OrderNumber>444001</OrderNumber>
+        <DeclaredQuota>
+            <MeasurementUnit>KGM</MeasurementUnit>
+        <DeclaredQuota>
+      </Measure>
+      </Measure>
+    </Measures>
+  </Goods>
+</TaricResponse>
+<!--040210110001-->>

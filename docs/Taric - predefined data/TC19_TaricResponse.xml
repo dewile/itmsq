@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-16"?>
+<TaricResponse>
+  <Version>1.0</Version>
+  <Guid>aafadfa1-7f29-4a6b-81a2-a1970acbc2c4</Guid>
+  <Goods>
+    <GoodsItemNumber>1</GoodsItemNumber>
+    <GoodsShipment>1</GoodsShipment>
+    <CalcDate>2026-05-01</CalcDate>
+    <Measures>
+      <Measure>
+        <MeasureSID>2</MeasureSID>
+        <MSeries>B</MSeries>
+        <MType>709</MType>
+        <RegID>R1234569</RegID>
+        <Info>
+            <InfoType>I<InfoType>
+            <InfoTypeText>Export Control<InfoTypeText>
+        <Info>
+        <GeoArea>CZ</GeoArea>
+      </Measure>
+      </Measure>
+    </Measures>
+  </Goods>
+</TaricResponse>
+<!--010129900000//I064-->>
